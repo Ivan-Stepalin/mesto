@@ -1,8 +1,7 @@
 .element {
     margin: 0;
-    padding: 0;
+    padding: 0 0 31px 0;
     background-color: white;
     width: 282px;
-    height: 361px;
     border-radius: 10px;
 }
