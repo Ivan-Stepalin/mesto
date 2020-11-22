@@ -35,5 +35,3 @@ function formSubmitHandler (event) {
 formElement.addEventListener('submit', formSubmitHandler); 
 formElement.addEventListener('submit', popupOff); 
 
-
-
