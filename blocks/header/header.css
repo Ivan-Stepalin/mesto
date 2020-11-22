@@ -1,0 +1,21 @@
+.header {
+    margin: 28px 0 0;
+    padding:  0;
+    height: 56px;
+    border-bottom: 1px solid #545454;
+    background-image: url(../../images/logo.svg);
+    background-repeat: no-repeat;
+    background-position-x: 27px;
+}
+
+@media screen and (min-width: 880px) {
+    .header {
+        width: 880px;
+        margin: 45px auto 0;
+        padding: 0;
+        height: 74px;
+        background-image: url(../../images/logo1280.svg);
+        background-repeat: no-repeat;
+        background-position-x: 0;
+    }
+}

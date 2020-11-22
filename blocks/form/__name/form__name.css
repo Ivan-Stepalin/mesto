@@ -1,0 +1,20 @@
+.form__name {
+    margin: 25px 22px 0;
+    padding: 0;
+    height: 23px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+@media screen and (min-width: 880px) {
+    .form__name {
+        font-size: 24px;
+        line-height: 29px;
+        text-align: left;
+        margin: 34px 64px 0 36px;
+    }
+}

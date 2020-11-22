@@ -1,0 +1,25 @@
+.form__field {
+    border: none;
+    margin: 62px 22px 0;
+    padding: 13px 0 13px 0;
+    height: 14px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);;
+    min-width: 238px;
+}
+
+.form__field:nth-child(2) {
+    margin-top: 17px;
+}
+
+@media screen and (min-width: 880px) {
+    .form__field {
+        margin: 41px 36px 0;
+        width: 358px;
+    }
+}
