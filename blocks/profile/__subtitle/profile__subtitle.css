@@ -8,13 +8,17 @@
     letter-spacing: 0em;
     text-align: center;
     color: rgb(255, 255, 255);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 282px;
 }
 
 @media screen and (min-width: 880px) {
     .profile__subtitle {
         font-size: 18px;
         line-height: 22px;
-        height: 18px;
         text-align: left;
+        max-width: 294px;
     }
 }

@@ -5,7 +5,6 @@
 
 @media screen and (min-width: 880px) {
         .profile__info {
-            display: flex;
             flex-direction: column;
             justify-content: space-between;
             margin-left: 30px;
