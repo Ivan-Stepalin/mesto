@@ -18,11 +18,11 @@
 @import url(../blocks/element/element__box/element__box.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
-@import url(../blocks/popup-box/popup-box.css);
-@import url(../blocks/popup-box/__name/popup-box__name.css);
-@import url(../blocks/popup-box/__field/popup-box__field.css);
+@import url(../blocks/popup/__name/popup__name.css);
+@import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup-box/__submit-button/popup-box__submit-button.css);
-@import url(../blocks/popup-box/__button-text/popup-box__button-text.css);
-@import url(../blocks/popup-box/__close-icon/popup-box__close-icon.css);
+@import url(../blocks/popup/__submit-button/popup__submit-button.css);
+@import url(../blocks/popup/__button-text/popup__button-text.css);
+@import url(../blocks/popup/__close-icon/popup__close-icon.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__form/popup__form.css);

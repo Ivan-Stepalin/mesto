@@ -1,4 +1,4 @@
-.popup-box__field {
+.popup__field {
     border: none;
     margin: 62px 22px 0;
     padding: 13px 0 13px 0;
@@ -14,12 +14,12 @@
     flex-direction: column;
 }
 
-.popup-box__field:nth-child(2) {
+.popup__field:nth-child(2) {
     margin-top: 17px;
 }
 
 @media screen and (min-width: 880px) {
-    .popup-box__field {
+    .popup__field {
         margin: 41px 36px 0;
         width: 358px;
     }

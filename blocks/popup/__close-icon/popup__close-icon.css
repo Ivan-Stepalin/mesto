@@ -1,4 +1,4 @@
-.popup-box__close-icon {
+.popup__close-icon {
     margin: 0;
     padding: 0;
     position: absolute;
@@ -15,13 +15,13 @@
     outline: none;
 }
 
-.popup-box__close-icon:hover {
+.popup__close-icon:hover {
     opacity: 0.6;
     cursor: pointer;
 }
 
 @media screen and (min-width: 880px) {
-    .popup-box__close-icon {
+    .popup__close-icon {
         transform: scale(1.4);
         top: -40px;
         right: -40px;

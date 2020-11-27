@@ -1,4 +1,4 @@
-.popup-box {
+.popup__form {
     margin: 0 auto 0;
     padding: 0;
     min-width: 282px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 880px) {
-    .popup-box {
+    .popup__form {
         width: 430px;
         padding-bottom: 37px;
     }
