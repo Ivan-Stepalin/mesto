@@ -17,7 +17,3 @@
     cursor: pointer;
 }
 
-.element__group:active {
-    background-image: url(../../../images/like_2.svg);
-    opacity: 1;
-}

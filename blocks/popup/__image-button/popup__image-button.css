@@ -1,0 +1,12 @@
+.popup__image-button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: inherit;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.popup__image-button:hover {
+    cursor: pointer;
+}

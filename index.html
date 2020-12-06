@@ -28,53 +28,11 @@
 
  
         <section class="elements">
-                <article class="element">
-                    <img class="element__image" src="./images/karachaevo.png" alt="Карачаево">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Карачаево-Черкессия</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>      
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>     
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/dombai.png" alt="Домбай">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>      
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>     
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/dombai.png" alt="Домбай">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>      
-                </article>
-                <article class="element">
-                    <img class="element__image" src="./images/karachaevo.png" alt="карачаево">  
-                    <div class="element__box">     
-                        <h2 class="element__name">Карачаево-Ч...</h2>
-                        <button type="button" aria-label="лайк" class="element__group"></button>  
-                    </div>      
-                </article>
         </section>
 
-        <section class="popup">
-            <form class="popup__form">
-                <button type="button" aria-label="закрыть" class="popup__close-icon"></button>
+        <section class="popup popup_title">
+            <form class="popup__form popup__form_title">
+                <button type="button" aria-label="закрыть" class="popup__close-icon popup__close-icon_title"></button>
                 <h2 class="popup__name">
                     Редактировать профиль
                 </h2>
@@ -86,6 +44,40 @@
             </form>       
         </section>
     
+        <section class="popup popup_element">
+            <form class="popup__form popup__form_element">
+                <button type="button" aria-label="закрыть" class="popup__close-icon popup__close-icon_element"></button>
+                <h2 class="popup__name">
+                    Новое место
+                </h2>
+                <div class="popup__input-box">
+                    <input name="title" type="text"  placeholder="Название" class="popup__field popup__field_value_title">
+                    <input name="link" type="text" placeholder="ссылка на картинку" class="popup__field popup__field_value_link">
+                </div>
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>       
+        </section>
+
+        <template class="template">
+            <article class="element">
+                <button type="button" class="popup__image-button">
+                    <img class="element__image">
+                </button>
+                <div class="popup">
+                    <div class="popup__box">
+                        <button type="button" aria-label="закрыть" class="popup__close-icon popup__close-icon_image"></button>
+                        <img class="popup__image">
+                        <h2 class="popup__image-name"></h2>
+                    </div>    
+                </div> 
+                <button type="button" aria-label="корзина" class="element__bracket"></button> 
+                <div class="element__box">     
+                    <h2 class="element__name"></h2>
+                    <button type="button" aria-label="лайк" class="element__group"></button>  
+                </div>      
+            </article>
+        </template>
+          
     </main>
     <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
