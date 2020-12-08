@@ -44,7 +44,7 @@ function composeCard(item){
 }
 
 function addRemoveCloseLikeListenersToItem(item){       
-    const imgButton = item.querySelector('.popup__image-button');
+    const imgButton = item.querySelector('.element__image');
     imgButton.addEventListener('click', imgOpenPopup);
     const CloseButtonImg = item.querySelector('.popup__close-icon_image');
     CloseButtonImg.addEventListener('click', imgClosePopup)
@@ -72,7 +72,7 @@ function imgClosePopup(event){
 }
 
 function imgOpenPopup(event){
-    const targetItem = event.target.closest('.popup__image-button');
+    const targetItem = event.target.closest('.element__image');
     const targetCard = targetItem.nextElementSibling
     targetCard.classList.add('popup_opened');
 }
