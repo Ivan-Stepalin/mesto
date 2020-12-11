@@ -35,19 +35,16 @@ function composeCard(item){
     headerElement.textContent = item.name;
     imgElement.src = item.link;
     imgElement.alt = item.name;
-    const imgButton = newCard.querySelector('.element__image');
-    imgButton.addEventListener('click', imgOpenPopup);
-    CloseButtonImg.addEventListener('click', imgClosePopup)
     const removeButton = newCard.querySelector('.element__bracket');
     removeButton.addEventListener('click', removeCard);
     const likeButton = newCard.querySelector('.element__group');
-    likeButton.addEventListener('click', likeActive);
-    imgElement.addEventListener('click', imgOpenPopup);
+    likeButton.addEventListener('click', showLike);
+    imgElement.addEventListener('click', OpenImgPopup);
     return newCard;
 }
 
 
-function likeActive(event){
+function showLike(event){
     const like = event.target.classList.toggle('element__group_active');
 }
 
@@ -55,23 +52,19 @@ function removeCard(event){
     const Card = event.target.parentElement.remove();
 }
 
-function imgClosePopup(event){
-    popupImg.classList.toggle('popup_opened')
-}
-
-function imgOpenPopup(event){
+function OpenImgPopup(event){
     imgPopup.src = event.target.getAttribute('src');
     imgPopup.alt =event.target.getAttribute('alt');
     imgPopupName.textContent = event.target.getAttribute('alt');
     popupImg.classList.toggle('popup_opened')
 }
 
-function cardUpload () {
+function uploadCard () {
     let cardInfo = initialCards.map(composeCard);
     cardContainerElement.prepend(...cardInfo);
 }
 
-function popupOpen(popup) {
+function openPopup(popup) {
     popup.classList.toggle('popup_opened');
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
@@ -88,16 +81,17 @@ function formAddElement (evt) {
     evt.preventDefault(); 
     popupElement.classList.remove('popup_opened');
     initialCards.unshift({name: titleInput.value, link: linkInput.value});
-    const newCard = initialCards.slice(0, 1).map(composeCard);
-    cardContainerElement.prepend(...newCard);
+    const addCard = initialCards.slice(0, 1).map(composeCard);
+    cardContainerElement.prepend(...addCard);
 }
 
+CloseButtonImg.addEventListener('click', ()=>openPopup(popupImg))
 popupTitle.addEventListener('submit', formSubmitHandler); 
 popupElement.addEventListener('submit', formAddElement); 
-buttonEdit.addEventListener('click', ()=>popupOpen(popupTitle));
-closeButtonTitle.addEventListener('click', ()=>popupOpen(popupTitle));
-addButton.addEventListener('click', ()=>popupOpen(popupElement));
-closeButtonElement.addEventListener('click', ()=>popupOpen(popupElement));
-cardUpload();
+buttonEdit.addEventListener('click', ()=>openPopup(popupTitle));
+closeButtonTitle.addEventListener('click', ()=>openPopup(popupTitle));
+addButton.addEventListener('click', ()=>openPopup(popupElement));
+closeButtonElement.addEventListener('click', ()=>openPopup(popupElement));
+uploadCard();
 
 
