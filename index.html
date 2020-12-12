@@ -43,44 +43,45 @@
                 <button type="submit" class="popup__submit-button">Сохранить</button>
             </form>       
         </div>
-    
-        <div class="popup popup_element">
-            <form class="popup__form popup__form_element">
-                <button type="button" aria-label="закрыть" class="popup__close-icon popup__close-icon_element"></button>
-                <h2 class="popup__name">
-                    Новое место
-                </h2>
-                <div class="popup__input-box">
-                    <input name="title" type="text"  placeholder="Название" class="popup__field popup__field_value_title">
-                    <input name="link" type="text" placeholder="ссылка на картинку" class="popup__field popup__field_value_link">
-                </div>
-                <button type="submit" class="popup__submit-button">Сохранить</button>
-            </form>       
-        </div>
-
-        <div class="popup popup_image">
-            <div class="popup__box">
-                <button type="button" aria-label="закрыть" class="popup__close-icon popup__close-icon_image"></button>
-                <img class="popup__image" alt=" " src=" ">
-                <h2 class="popup__image-name"></h2>
-            </div>    
-        </div>
-
-        <template class="template">
-            <article class="element">
-                <img class="element__image" alt=" " src=" ">
-                <button type="button" aria-label="корзина" class="element__bracket"></button> 
-                <div class="element__box">     
-                    <h2 class="element__name"></h2>
-                    <button type="button" aria-label="лайк" class="element__group"></button>  
-                </div>      
-            </article>
-        </template>
           
     </main>
     <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+
+    <div class="popup popup_element">
+        <form class="popup__form popup__form_element">
+            <button type="button" aria-label="закрыть" class="popup__close-icon"></button>
+            <h2 class="popup__name">
+                Новое место
+            </h2>
+            <div class="popup__input-box">
+                <input name="title" type="text"  placeholder="Название" class="popup__field popup__field_value_title">
+                <input name="link" type="text" placeholder="ссылка на картинку" class="popup__field popup__field_value_link">
+            </div>
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>       
+    </div>
+
+    <div class="popup popup_image">
+        <div class="popup__box">
+            <button type="button" aria-label="закрыть" class="popup__close-icon"></button>
+            <img class="popup__image" alt=" " src=" ">
+            <h2 class="popup__image-name"></h2>
+        </div>    
+    </div>
+
+    <template class="template">
+        <article class="element">
+            <img class="element__image" alt=" " src=" ">
+            <button type="button" aria-label="корзина" class="element__bracket"></button> 
+            <div class="element__box">     
+                <h2 class="element__name"></h2>
+                <button type="button" aria-label="лайк" class="element__group"></button>  
+            </div>      
+        </article>
+    </template>
+    
     <script src="./scripts/script.js"></script>
 </body>
 </html> 
