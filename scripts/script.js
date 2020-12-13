@@ -80,6 +80,7 @@ function addCardSubmitHandler (evt) {
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
     closePopup(popupElement);
+    popupElement.querySelector('.popup__form').reset();
 }
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler); 
