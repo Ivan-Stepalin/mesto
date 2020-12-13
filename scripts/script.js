@@ -15,22 +15,13 @@ const picturePopup = popupImgContainer.querySelector('.popup__image');
 const picturePopupName = popupImgContainer.querySelector('.popup__image-name');
 const closeButtonImg = popupImgContainer.querySelector('.popup__close-icon');
 
-let initialCards = [
-    {   name: 'Дом', link: 'https://images.unsplash.com/photo-1607435655201-1c8db5afc449?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'},
-    {   name: 'Капучино', link: 'https://images.unsplash.com/photo-1607278967764-548cbaa2d492?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'},
-    {   name: 'Иваново', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'},
-    {   name: 'Камчатка', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'},
-    {   name: 'Холмогорский район', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'},
-    {   name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'}
-]; 
-
 const cardContainerElement = document.querySelector('.elements');
 const templateElement = document.querySelector('.template').content;
-
 
 function composeCard(item){
     const newCard = templateElement.cloneNode(true);
     const imgElement = newCard.querySelector('.element__image');
+    imgElement.addEventListener('click', ()=>openImgPopup(item));
     const headerElement = newCard.querySelector('.element__name');
     headerElement.textContent = item.name;
     imgElement.src = item.link;
@@ -39,7 +30,6 @@ function composeCard(item){
     removeButton.addEventListener('click', removeCard);
     const likeButton = newCard.querySelector('.element__group');
     likeButton.addEventListener('click', showLike);
-    imgElement.addEventListener('click', ()=>openImgPopup(item));
     return newCard;
 }
 
@@ -61,7 +51,7 @@ function showLike(event){
 }
 
 function removeCard(event){
-    event.target.parentElement.remove();
+    event.target.closest('.element').remove();
 }
 
 function openImgPopup(item){
