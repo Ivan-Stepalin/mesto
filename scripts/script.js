@@ -1,14 +1,14 @@
 const popupTitle = document.querySelector('.popup_title');
 const popupElement = document.querySelector('.popup_element');
-const buttonEdit = document.querySelector('.profile__edit-button');
-const closeButtonTitle = popupTitle.querySelector('.popup__close-icon');
-const closeButtonElement = popupElement.querySelector('.popup__close-icon');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButtonEditTitle = popupTitle.querySelector('.popup__close-icon');
+const closeButtonAddElement = popupElement.querySelector('.popup__close-icon');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
-const nameInput = popupTitle.querySelector('.popup__field_value_name');
-const jobInput = popupTitle.querySelector('.popup__field_value_job');
-const titleInput = popupElement.querySelector('.popup__field_value_title');
-const linkInput = popupElement.querySelector('.popup__field_value_link');
+const inputName = popupTitle.querySelector('.popup__field_value_name');
+const inputJob = popupTitle.querySelector('.popup__field_value_job');
+const inputTitle = popupElement.querySelector('.popup__field_value_title');
+const inputLink = popupElement.querySelector('.popup__field_value_link');
 const addButton = document.querySelector('.profile__add-button');
 const popupImgContainer = document.querySelector('.popup_image');
 const picturePopup = popupImgContainer.querySelector('.popup__image');
@@ -35,9 +35,6 @@ function composeCard(item){
     headerElement.textContent = item.name;
     imgElement.src = item.link;
     imgElement.alt = item.name;
-    const imgButton = newCard.querySelector('.element__image');
-    imgButton.addEventListener('click', openImgPopup);
-    closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
     const removeButton = newCard.querySelector('.element__bracket');
     removeButton.addEventListener('click', removeCard);
     const likeButton = newCard.querySelector('.element__group');
@@ -75,21 +72,21 @@ function openImgPopup(item){
 }
 
 function editPopup() {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
     openPopup(popupTitle);
 }
 
 function editTitleSubmitHandler (event) {
     event.preventDefault(); 
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
+    profileName.textContent = inputName.value;
+    profileJob.textContent = inputJob.value;
     closePopup(popupTitle);
 }
 
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
-    initialCards.unshift({name: titleInput.value, link: linkInput.value});
+    initialCards.unshift({name: inputTitle.value, link: inputLink.value});
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
     closePopup(popupElement);
@@ -97,10 +94,11 @@ function addCardSubmitHandler (evt) {
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler); 
 popupElement.addEventListener('submit', addCardSubmitHandler); 
-buttonEdit.addEventListener('click', editPopup);
-closeButtonTitle.addEventListener('click', ()=>closePopup(popupTitle));
+editButton.addEventListener('click', editPopup);
+closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
 addButton.addEventListener('click', ()=>openPopup(popupElement));
-closeButtonElement.addEventListener('click', ()=>closePopup(popupElement));
+closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
+closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 generateCardGrid();
 
 
