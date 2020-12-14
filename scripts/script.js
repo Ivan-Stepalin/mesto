@@ -74,13 +74,17 @@ function editTitleSubmitHandler (event) {
     closePopup(popupTitle);
 }
 
+function resetAndCloseForm(popup) {
+    popup.querySelector('.popup__form').reset();
+    closePopup(popup);
+}
+
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
     initialCards.unshift({name: inputTitle.value, link: inputLink.value});
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
-    closePopup(popupElement);
-    popupElement.querySelector('.popup__form').reset();
+    resetAndCloseForm(popupElement);
 }
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler); 
@@ -88,7 +92,7 @@ popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', editPopup);
 closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
 addButton.addEventListener('click', ()=>openPopup(popupElement));
-closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
+closeButtonAddElement.addEventListener('click', ()=>resetAndCloseForm(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 generateCardGrid();
 
