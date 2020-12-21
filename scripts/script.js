@@ -15,6 +15,8 @@ const picturePopup = popupImgContainer.querySelector('.popup__image');
 const picturePopupName = popupImgContainer.querySelector('.popup__image-name');
 const closeButtonImg = popupImgContainer.querySelector('.popup__close-icon');
 
+
+const inputList = popupElement.querySelectorAll('.popup__field');
 const cardContainerElement = document.querySelector('.elements');
 const templateElement = document.querySelector('.template').content;
 
@@ -79,12 +81,64 @@ function resetAndCloseForm(popup) {
     closePopup(popup);
 }
 
+
+
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
     initialCards.unshift({name: inputTitle.value, link: inputLink.value});
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
     resetAndCloseForm(popupElement);
+}
+
+function showError(form, input, config) {
+    const error = form.querySelector(`#${input.id}-error`);
+    error.textContent = input.validationMessage;
+    input.classList.add(config.inputInvalidClass);
+}
+
+function hideError(form, input, config) {
+    const error = form.querySelector(`#${input.id}-error`);
+    error.textContent = ``;
+    input.classList.remove(config.inputInvalidClass);
+}
+
+function checkInputValidity(form, input, config) {
+    if(input.validity.valid) {
+        hideError(form, input, config)
+    }else {
+        showError(form, input, config)
+    }
+}
+
+function setButtonState(button, isActive, config) {
+    if (isActive) {
+        button.classList.remove(config.buttonInvalidClass);
+        button.disabled = false;
+    } else {
+        button.classList.add(config.buttonInvalidClass);
+        button.disabled = true; 
+    }
+}
+
+function setEventListeners(form, config){
+    const inputList = form.querySelectorAll(config.inputSelector);
+    const submitButton = form.querySelector(config.submitButtonSelector);
+    inputList.forEach(input => {
+        input.addEventListener('input', (evt) => {
+            checkInputValidity(form, input, config);
+            setButtonState(submitButton, form.checkValidity(), config);
+        });
+    });
+}
+
+function enableValidation(config) {
+    const forms = document.querySelectorAll(config.formSelector);
+    forms.forEach(form => {
+        setEventListeners(form, config)
+        const submitButton = form.querySelector(config.submitButtonSelector);
+        setButtonState(submitButton, form.checkValidity(), config)
+    })
 }
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler); 
@@ -95,5 +149,6 @@ addButton.addEventListener('click', ()=>openPopup(popupElement));
 closeButtonAddElement.addEventListener('click', ()=>resetAndCloseForm(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 generateCardGrid();
+enableValidation(validationConfig);
 
 

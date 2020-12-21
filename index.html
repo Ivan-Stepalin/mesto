@@ -42,8 +42,10 @@
                 Редактировать профиль
             </h2>
             <div class="popup__input-box">
-                <input name="name" type="text" placeholder='Ваше Имя' value="" class="popup__field popup__field_value_name">
-                <input name="job" type="text" value="" placeholder='Коротко о себе' class="popup__field popup__field_value_job">
+                <input name="name" type="text" id="name-title" placeholder='Ваше Имя' value="" class="popup__field popup__field_value_name" minlength="2" maxlength="40" required novalidate>
+                <span id="name-title-error" class="popup__error"></span>
+                <input name="job" type="text" id="job-title" value="job-title" placeholder='Коротко о себе' class="popup__field popup__field_value_job" minlength="2" maxlength="200" required novalidate>
+                <span id="job-title-error" class="popup__error"></span>
             </div>
             <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>       
@@ -56,8 +58,10 @@
                 Новое место
             </h2>
             <div class="popup__input-box">
-                <input name="title" type="text"  placeholder="Название" class="popup__field popup__field_value_title">
-                <input name="link" type="text" placeholder="ссылка на картинку" class="popup__field popup__field_value_link">
+                <input name="title" type="text" id="name-element" placeholder="Название" class="popup__field popup__field_value_title" minlength="2" maxlength="30" required novalidate>
+                <span id="name-element-error" class="popup__error"></span>
+                <input name="link" type="url" id="link-element" placeholder="ссылка на картинку" class="popup__field popup__field_value_link" required novalidate>
+                <span id="link-element-error" class="popup__error"></span>
             </div>
             <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>       
@@ -82,6 +86,7 @@
         </article>
     </template>
 
+    <script src="./scripts/validationConfig.js"></script>
     <script src="./scripts/initial-cards.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
