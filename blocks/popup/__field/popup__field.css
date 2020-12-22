@@ -1,6 +1,6 @@
 .popup__field {
     border: none;
-    margin: 67px 22px 0;
+    margin: 28px 20px 0;
     padding: 8px 0 8px 0;
     font-size: 14px;
     font-style: normal;
@@ -13,8 +13,8 @@
     flex-direction: column;
 }
 
-.popup__field:nth-child(2) {
-    margin-top: 22px;
+.popup__field:nth-child(3) {
+    margin-top: 8px;
 }
 
 @media screen and (min-width: 880px) {
