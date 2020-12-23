@@ -145,13 +145,12 @@ function enableValidation(config) {
     })
 }
 
-
-
 const closePopupByEsc = (evt) =>{
     if (evt.code === `Escape`){
         const popupHandler = document.querySelector('.popup_opened')
         closePopup(popupHandler)
         document.removeEventListener('keydown',closePopupByEsc)
+        resetAndCloseForm(popupHandler)
     }
 
 }
@@ -159,8 +158,12 @@ const closePopupByEsc = (evt) =>{
 const closePopupByOverlay = (evt) =>{
     const popupHandler = document.querySelector('.popup_opened')
     if(evt.target === popupHandler){
-        closePopup(popupHandler)
+        closePopup(popupHandler)    
+        if(popupHandler !== popupTitle){
+            resetAndCloseForm(popupHandler)
+        }
     }
+
 }
 
 

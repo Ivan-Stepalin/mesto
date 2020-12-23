@@ -34,3 +34,4 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__field/_state/popup__field_state_invalid.css);
 @import url(../blocks/popup/__submit-button/_state/popup__submit-button_state_invalid.css);
+@import url(../blocks/popup/__input-box/popup__input-box.css);

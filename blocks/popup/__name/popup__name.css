@@ -1,5 +1,5 @@
 .popup__name {
-    margin: 25px 22px 0;
+    margin: 25px 0 0;
     padding: 0;
     font-size: 18px;
     font-style: normal;
@@ -13,6 +13,6 @@
     .popup__name {
         font-size: 24px;
         line-height: 29px;
-        margin: 34px 64px 0 36px;
+        margin: 34px 64px 0 0;
     }
 }
