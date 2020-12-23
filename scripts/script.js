@@ -45,12 +45,11 @@ function generateCardGrid () {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupByOverlay);
-    popup.addEventListener('keydown', closePopupByEsc);
-    submitButton.forEach(item => setButtonState(item, popup.firstElementChild.checkValidity(), validationConfig)) 
+    submitButton.forEach(item => {setButtonState(item, item.parentElement.checkValidity(), validationConfig)});
+    document.addEventListener('keydown',closePopupByEsc);
 }
 
 function closePopup(popup) {
-    popup.removeEventListener('keydown', closePopupByEsc);
     popup.classList.remove('popup_opened');
 }
 
@@ -149,11 +148,12 @@ function enableValidation(config) {
 
 
 const closePopupByEsc = (evt) =>{
-    console.log(evt.key)
     if (evt.code === `Escape`){
         const popupHandler = document.querySelector('.popup_opened')
         closePopup(popupHandler)
+        document.removeEventListener('keydown',closePopupByEsc)
     }
+
 }
 
 const closePopupByOverlay = (evt) =>{
@@ -161,8 +161,8 @@ const closePopupByOverlay = (evt) =>{
     if(evt.target === popupHandler){
         closePopup(popupHandler)
     }
-    console.log(evt.target)
 }
+
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
