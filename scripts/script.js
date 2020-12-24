@@ -104,7 +104,7 @@ function addCardSubmitHandler (evt) {
     initialCards.unshift({name: inputTitle.value, link: inputLink.value});
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
-    resetForm(popupElement);
+    resetAndCloseForm(popupElement);
 }
 
 function showError(form, input, config) {
