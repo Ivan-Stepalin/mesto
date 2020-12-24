@@ -82,9 +82,21 @@ function editTitleSubmitHandler (event) {
     closePopup(popupTitle);
 }
 
+function resetForm(popup) {
+    if(popup === popupElement) {
+        popup.querySelector('.popup__form').reset();
+    }
+    popup.querySelectorAll('.popup__field').forEach(item => {
+        item.classList.remove('popup__field_state_invalid')
+    })
+    popup.querySelectorAll('.popup__error').forEach(item => {
+        item.textContent = ``
+    })
+}
+
 function resetAndCloseForm(popup) {
-    popup.querySelector('.popup__form').reset();
     closePopup(popup);
+    resetForm(popup);
 }
 
 function addCardSubmitHandler (evt) {
@@ -92,7 +104,7 @@ function addCardSubmitHandler (evt) {
     initialCards.unshift({name: inputTitle.value, link: inputLink.value});
     const addCard = composeCard(initialCards[0]);
     cardContainerElement.prepend(addCard);
-    resetAndCloseForm(popupElement);
+    resetForm(popupElement);
 }
 
 function showError(form, input, config) {
@@ -146,31 +158,30 @@ function enableValidation(config) {
 }
 
 const closePopupByEsc = (evt) =>{
-    if (evt.code === `Escape`){
-        const popupHandler = document.querySelector('.popup_opened')
+    const popupHandler = document.querySelector('.popup_opened')
+    if (evt.key === `Escape`){
         closePopup(popupHandler)
         document.removeEventListener('keydown',closePopupByEsc)
-        resetAndCloseForm(popupHandler)
+        if(popupHandler !== picturePopup){
+            resetForm(popupHandler)
+        }
     }
-
 }
 
 const closePopupByOverlay = (evt) =>{
     const popupHandler = document.querySelector('.popup_opened')
     if(evt.target === popupHandler){
         closePopup(popupHandler)    
-        if(popupHandler !== popupTitle){
-            resetAndCloseForm(popupHandler)
+        if(popupHandler !== picturePopup){
+            resetForm(popupHandler)
         }
     }
-
 }
-
 
 popupTitle.addEventListener('submit', editTitleSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', editPopup);
-closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
+closeButtonEditTitle.addEventListener('click', ()=>resetAndCloseForm(popupTitle));
 addButton.addEventListener('click', ()=>openPopup(popupElement));
 closeButtonAddElement.addEventListener('click', ()=>resetAndCloseForm(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
