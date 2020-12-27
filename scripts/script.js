@@ -16,7 +16,6 @@ const popupImgContainer = document.querySelector('.popup_image');
 const picturePopup = popupImgContainer.querySelector('.popup__image');
 const picturePopupName = popupImgContainer.querySelector('.popup__image-name');
 const closeButtonImg = popupImgContainer.querySelector('.popup__close-icon');
-const submitButton = popupTitle.querySelector('.popup__submit-button')
 
 
 const cardContainerElement = document.querySelector('.elements');
@@ -72,12 +71,18 @@ function openImgPopup(item){
     openPopup(popupImgContainer);
 }
 
-
 function openEditProfilePopup() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     openPopup(popupTitle);
+    const submitButton = popupTitle.querySelector('.popup__submit-button');
     setButtonState(submitButton, popupFormTitle.checkValidity(), validationConfig);
+}
+
+function openAddCardPopup() {
+    openPopup(popupElement);
+    const submitButton = popupElement.querySelector('.popup__submit-button');
+    setButtonState(submitButton, popupFormElement.checkValidity(), validationConfig);
 }
 
 function editUserProfilePopupSubmitHandler (event) {
@@ -133,7 +138,7 @@ popupTitle.addEventListener('submit', editUserProfilePopupSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', openEditProfilePopup);
 closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
-addButton.addEventListener('click', ()=>openPopup(popupElement));
+addButton.addEventListener('click', openAddCardPopup);
 closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 generateCardGrid();
