@@ -46,6 +46,9 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupByOverlay);
     document.addEventListener('keydown',closePopupByEsc);
+    if (popup !== picturePopup){
+        clearForm(popup, validationConfig);
+    }
 }
 
 function closePopup(popup) {
@@ -97,8 +100,7 @@ function deleteErrors(popup, config) {
     })
 }
 
-function ClearForm(popup, config) {
-    closePopup(popup);
+function clearForm(popup, config) {
     deleteErrors(popup, config);
     if (popup === popupElement){
         resetForm(popup, config)
@@ -107,19 +109,16 @@ function ClearForm(popup, config) {
 
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
-    initialCards.unshift({name: inputTitle.value, link: inputLink.value});
-    const addCard = composeCard(initialCards[0]);
+    const addCard = composeCard({name: inputTitle.value, link: inputLink.value});
     cardContainerElement.prepend(addCard);
-    ClearForm(popupElement, validationConfig);
+    clearForm(popupElement, validationConfig);
+    closePopup(popupElement)
 }
 
 const closePopupByEsc = (evt) =>{
     const popupHandler = document.querySelector('.popup_opened')
     if (evt.key === `Escape`){
         closePopup(popupHandler)
-        if(popupHandler !== picturePopup){
-            ClearForm(popupHandler, validationConfig);
-        }
     }
 }
 
@@ -127,18 +126,15 @@ const closePopupByOverlay = (evt) =>{
     const popupHandler = document.querySelector('.popup_opened')
     if(evt.target === popupHandler){
         closePopup(popupHandler)    
-        if(popupHandler !== picturePopup){
-            ClearForm(popupHandler, validationConfig)
-        }
     }
 }
 
 popupTitle.addEventListener('submit', editUserProfilePopupSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', openEditProfilePopup);
-closeButtonEditTitle.addEventListener('click', ()=>ClearForm(popupTitle, validationConfig));
+closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
 addButton.addEventListener('click', ()=>openPopup(popupElement));
-closeButtonAddElement.addEventListener('click', ()=>ClearForm(popupElement, validationConfig));
+closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 generateCardGrid();
 enableValidation(validationConfig);
