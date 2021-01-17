@@ -1,3 +1,9 @@
+import {initialCards} from './initial-cards.js'
+import {validationConfig} from './validationConfig.js'
+import {Card} from './card.js'
+import {FormValidator} from './formValidator.js'
+
+
 const popupTitle = document.querySelector('.popup_title');
 const popupElement = document.querySelector('.popup_element');
 const popupFormTitle = popupTitle.querySelector('.popup__form_title');
@@ -17,28 +23,24 @@ const picturePopup = popupImgContainer.querySelector('.popup__image');
 const picturePopupName = popupImgContainer.querySelector('.popup__image-name');
 const closeButtonImg = popupImgContainer.querySelector('.popup__close-icon');
 
-
 const cardContainerElement = document.querySelector('.elements');
-const templateElement = document.querySelector('.template').content;
 
-function composeCard(item){
-    const newCard = templateElement.cloneNode(true);
-    const imgElement = newCard.querySelector('.element__image');
-    imgElement.addEventListener('click', ()=>openImgPopup(item));
-    const headerElement = newCard.querySelector('.element__name');
-    headerElement.textContent = item.name;
-    imgElement.src = item.link;
-    imgElement.alt = item.name;
-    const removeButton = newCard.querySelector('.element__bracket');
-    removeButton.addEventListener('click', removeCard);
-    const likeButton = newCard.querySelector('.element__group');
-    likeButton.addEventListener('click', showLike);
-    return newCard;
+const renderElements = () => {
+    initialCards.forEach((item) => {
+        const card = new Card (item, 'template');
+        const cardElement = card.composeCard(card);
+        cardContainerElement.append(cardElement);
+
+    })
 }
+renderElements()
 
-function generateCardGrid () {
-    const cardInfo = initialCards.map(composeCard);
-    cardContainerElement.prepend(...cardInfo);
+const checkValidation = () => {
+    const formErrors = document.querySelectorAll('.popup__form');
+    formErrors.forEach((formWithText) => {
+        const validate = new FormValidator(validationConfig, formWithText);
+        validate.enableValidation();
+    })
 }
 
 function openPopup(popup) {
@@ -46,8 +48,9 @@ function openPopup(popup) {
     popup.addEventListener('click', closePopupByOverlay);
     document.addEventListener('keydown',closePopupByEsc);
     if (popup !== picturePopup){
-        clearForm(popup, validationConfig);
+        clearForm(popup, validationConfig)
     }
+    checkValidation();
 }
 
 function closePopup(popup) {
@@ -56,37 +59,18 @@ function closePopup(popup) {
     document.removeEventListener('keydown',closePopupByEsc);
 }
 
-function showLike(event){
-    event.target.classList.toggle('element__group_active');
-}
-
-function removeCard(event){
-    event.target.closest('.element').remove();
-}
-
-function openImgPopup(item){
-    picturePopup.src = item.link;
-    picturePopup.alt = item.name;
-    picturePopupName.textContent = item.name;
-    openPopup(popupImgContainer);
-}
-
 function openEditProfilePopup() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     openPopup(popupTitle);
-    const submitButton = popupTitle.querySelector('.popup__submit-button');
-    setButtonState(submitButton, popupFormTitle.checkValidity(), validationConfig);
 }
 
 function openAddCardPopup() {
     openPopup(popupElement);
-    const submitButton = popupElement.querySelector('.popup__submit-button');
-    setButtonState(submitButton, popupFormElement.checkValidity(), validationConfig);
 }
 
 function editUserProfilePopupSubmitHandler (event) {
-    event.preventDefault(); 
+    event.preventDefault();
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     closePopup(popupTitle);
@@ -114,10 +98,10 @@ function clearForm(popup, config) {
 
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
-    const addCard = composeCard({name: inputTitle.value, link: inputLink.value});
-    cardContainerElement.prepend(addCard);
-    clearForm(popupElement, validationConfig);
-    closePopup(popupElement)
+    const card = new Card({name: inputTitle.value, link: inputLink.value}, 'template');
+    const cardElement = card.composeCard(card);
+    cardContainerElement.prepend(cardElement);
+    closePopup(popupElement);
 }
 
 const closePopupByEsc = (evt) =>{
@@ -141,7 +125,5 @@ closeButtonEditTitle.addEventListener('click', ()=>closePopup(popupTitle));
 addButton.addEventListener('click', openAddCardPopup);
 closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
-generateCardGrid();
-enableValidation(validationConfig);
 
 
