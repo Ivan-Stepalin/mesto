@@ -22,7 +22,6 @@ const popupImgContainer = document.querySelector('.popup_image');
 const picturePopup = popupImgContainer.querySelector('.popup__image');
 const picturePopupName = popupImgContainer.querySelector('.popup__image-name');
 const closeButtonImg = popupImgContainer.querySelector('.popup__close-icon');
-
 const cardContainerElement = document.querySelector('.elements');
 
 const renderElements = () => {
@@ -33,7 +32,6 @@ const renderElements = () => {
 
     })
 }
-renderElements()
 
 const checkValidation = () => {
     const formErrors = document.querySelectorAll('.popup__form');
@@ -118,6 +116,18 @@ const closePopupByOverlay = (evt) =>{
     }
 }
 
+function openImgPopup(evt) {
+    picturePopup.src = evt.target.getAttribute('src');
+    picturePopup.alt = evt.target.closest('.element').querySelector('.element__name').textContent;
+    picturePopupName.textContent = evt.target.closest('.element').querySelector('.element__name').textContent;
+    openPopup(popupImgContainer);
+}
+
+function addListenerToElement() {
+    document.querySelectorAll('.element').forEach((item)=>{item.addEventListener('click', openImgPopup)});
+}
+
+
 popupTitle.addEventListener('submit', editUserProfilePopupSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', openEditProfilePopup);
@@ -126,4 +136,5 @@ addButton.addEventListener('click', openAddCardPopup);
 closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 
-
+renderElements()
+addListenerToElement();

@@ -46,24 +46,23 @@ export class FormValidator {
         });
     }
    
-    _checkInputValue(item) {
-        return item.checkValidity() === true
-    }
-
-    _checkInputsForms() {
-        if (Array.from(this.elementForValidation.querySelectorAll('.popup__field')).every(this._checkInputValue)) {
+    /* _checkInputValue() {
+        const array = Array.from(this.elementForValidation.querySelectorAll(this.objectWithClass.inputSelector));
+        const selector = document.querySelector('.popup__form_title');
+        if (this.elementForValidation === selector && array[0].checkValidity() === false && array[1].checkValidity() === false) {
             this._button.classList.remove(this.objectWithClass.buttonInvalidClass);
-            this._button.disabled = false; 
+            this._button.disabled = false;
         } else {
             this._button.classList.add(this.objectWithClass.buttonInvalidClass);
-            this._button.disabled = true; 
+            this._button.disabled = true;
         }
-    };
+    } */
 
     enableValidation = () => {
         const submitButton = this.elementForValidation.querySelector(this.objectWithClass.submitButtonSelector);
         this._setEventListeners();
         this._setButtonState(submitButton, this.elementForValidation.checkValidity());
-        this._checkInputsForms();
+        /* this._checkInputsForms(); */
+        /* this._checkInputValue(); */
     }
 }

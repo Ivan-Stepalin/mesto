@@ -8,7 +8,6 @@ export class Card {
     composeCard() {
         this._newCard = document.querySelector(this._templateElement).content.cloneNode(true);
         const imgElement = this._newCard.querySelector('.element__image');
-        imgElement.addEventListener('click', () => { this._openImgPopup(); });
         const headerElement = this._newCard.querySelector('.element__name');
         headerElement.textContent = this._name;
         imgElement.src = this._link;
@@ -28,11 +27,4 @@ export class Card {
     _showLike = (event) => {
         event.target.classList.toggle('element__group_active');
     }  
-
-    _openImgPopup() {
-        picturePopup.src = this._link;
-        picturePopup.alt = this._name;
-        picturePopupName.textContent = this._name;
-        openPopup(popupImgContainer);
-    }
 }
