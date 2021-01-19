@@ -116,18 +116,6 @@ const closePopupByOverlay = (evt) =>{
     }
 }
 
-/* function openImgPopup(evt) {
-    picturePopup.src = evt.target.getAttribute('src');
-    picturePopup.alt = evt.target.closest('.element').querySelector('.element__name').textContent;
-    picturePopupName.textContent = evt.target.closest('.element').querySelector('.element__name').textContent;
-    openPopup(popupImgContainer);
-} */
-
-/* function addListenerToElement() {
-    document.querySelectorAll('.element').forEach((item)=>{item.addEventListener('click', openImgPopup)});
-} */
-
-
 popupTitle.addEventListener('submit', editUserProfilePopupSubmitHandler);
 popupElement.addEventListener('submit', addCardSubmitHandler);
 editButton.addEventListener('click', openEditProfilePopup);
@@ -137,4 +125,3 @@ closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 
 renderElements()
-/* addListenerToElement(); */
