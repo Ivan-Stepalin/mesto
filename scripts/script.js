@@ -26,7 +26,7 @@ const cardContainerElement = document.querySelector('.elements');
 
 const renderElements = () => {
     initialCards.forEach((item) => {
-        const card = new Card (item, 'template');
+        const card = new Card (item, 'template', openPopup);
         const cardElement = card.composeCard(card);
         cardContainerElement.append(cardElement);
 
@@ -41,7 +41,7 @@ const checkValidation = () => {
     })
 }
 
-function openPopup(popup) {
+const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupByOverlay);
     document.addEventListener('keydown',closePopupByEsc);
@@ -116,16 +116,16 @@ const closePopupByOverlay = (evt) =>{
     }
 }
 
-function openImgPopup(evt) {
+/* function openImgPopup(evt) {
     picturePopup.src = evt.target.getAttribute('src');
     picturePopup.alt = evt.target.closest('.element').querySelector('.element__name').textContent;
     picturePopupName.textContent = evt.target.closest('.element').querySelector('.element__name').textContent;
     openPopup(popupImgContainer);
-}
+} */
 
-function addListenerToElement() {
+/* function addListenerToElement() {
     document.querySelectorAll('.element').forEach((item)=>{item.addEventListener('click', openImgPopup)});
-}
+} */
 
 
 popupTitle.addEventListener('submit', editUserProfilePopupSubmitHandler);
@@ -137,4 +137,4 @@ closeButtonAddElement.addEventListener('click', ()=>closePopup(popupElement));
 closeButtonImg.addEventListener('click', ()=>closePopup(popupImgContainer));
 
 renderElements()
-addListenerToElement();
+/* addListenerToElement(); */
