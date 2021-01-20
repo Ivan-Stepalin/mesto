@@ -96,7 +96,7 @@ function clearForm(popup, config) {
 
 function addCardSubmitHandler (evt) {
     evt.preventDefault(); 
-    const card = new Card({name: inputTitle.value, link: inputLink.value}, 'template');
+    const card = new Card({name: inputTitle.value, link: inputLink.value}, 'template', openPopup);
     const cardElement = card.composeCard(card);
     cardContainerElement.prepend(cardElement);
     closePopup(popupElement);
