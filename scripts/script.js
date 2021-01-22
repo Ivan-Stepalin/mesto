@@ -42,9 +42,6 @@ const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupByOverlay);
     document.addEventListener('keydown',closePopupByEsc);
-    if (popup !== picturePopup){
-        validateAddCardForm.clearForm()
-    }
 }
 
 function closePopup(popup) {
@@ -57,11 +54,13 @@ function openEditProfilePopup() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     openPopup(popupTitle);
+    validateEditProfileForm.clearForm()
     validateEditProfileForm.setButtonState(popupTitle.querySelector(validationConfig.submitButtonSelector), popupFormTitle.checkValidity())
 }
 
 function openAddCardPopup() {
     openPopup(popupElement);
+    validateAddCardForm.clearForm()
     validateAddCardForm.setButtonState(popupElement.querySelector(validationConfig.submitButtonSelector), popupFormElement.checkValidity())
 }
 
