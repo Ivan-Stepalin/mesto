@@ -33,22 +33,18 @@ const renderElements = () => {
     })
 }
 
-const checkValidation = () => {
-    const formErrors = document.querySelectorAll('.popup__form');
-    formErrors.forEach((formWithText) => {
-        const validate = new FormValidator(validationConfig, formWithText);
-        validate.enableValidation();
-    })
-}
+const validateEditProfileForm = new FormValidator(validationConfig, popupTitle);
+validateEditProfileForm.enableValidation();
+const validateAddCardForm = new FormValidator(validationConfig, popupElement);
+validateAddCardForm.enableValidation();
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupByOverlay);
     document.addEventListener('keydown',closePopupByEsc);
     if (popup !== picturePopup){
-        clearForm(popup, validationConfig)
+        validateAddCardForm.clearForm()
     }
-    checkValidation();
 }
 
 function closePopup(popup) {
@@ -61,10 +57,12 @@ function openEditProfilePopup() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     openPopup(popupTitle);
+    validateEditProfileForm.setButtonState(popupTitle.querySelector(validationConfig.submitButtonSelector), popupFormTitle.checkValidity())
 }
 
 function openAddCardPopup() {
     openPopup(popupElement);
+    validateAddCardForm.setButtonState(popupElement.querySelector(validationConfig.submitButtonSelector), popupFormElement.checkValidity())
 }
 
 function editUserProfilePopupSubmitHandler (event) {
@@ -72,26 +70,6 @@ function editUserProfilePopupSubmitHandler (event) {
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     closePopup(popupTitle);
-}
-
-function resetForm(popup, config) {
-    popup.querySelector(config.formSelector).reset();
-}
-
-function deleteErrors(popup, config) {
-    popup.querySelectorAll(config.inputSelector).forEach(item => {
-        item.classList.remove(config.inputInvalidClass)
-    })
-    popup.querySelectorAll(config.spanSelector).forEach(item => {
-        item.textContent = ``
-    })
-}
-
-function clearForm(popup, config) {
-    deleteErrors(popup, config);
-    if (popup === popupElement){
-        resetForm(popup, config)
-    }
 }
 
 function addCardSubmitHandler (evt) {

@@ -2,7 +2,6 @@ export class FormValidator {
     constructor (objectWithClass, elementForValidation) {
         this.elementForValidation = elementForValidation;
         this.objectWithClass = objectWithClass;
-        this._button = this.elementForValidation.querySelector('.popup__submit-button');
     }
 
     _showError(input) {
@@ -25,13 +24,33 @@ export class FormValidator {
         }
     }
 
-    _setButtonState(button, isActive) {
+    setButtonState(button, isActive) {
         if (isActive) {
             button.classList.remove(this.objectWithClass.buttonInvalidClass);
             button.disabled = false;
         } else {
             button.classList.add(this.objectWithClass.buttonInvalidClass);
             button.disabled = true; 
+        }
+    }
+    
+    _resetForm() {
+        this.elementForValidation.querySelector(this.objectWithClass.formSelector).reset();
+    }
+    
+    _deleteErrors() {
+        this.elementForValidation.querySelectorAll(this.objectWithClass.inputSelector).forEach(item => {
+            item.classList.remove(this.objectWithClass.inputInvalidClass)
+        })
+        this.elementForValidation.querySelectorAll(this.objectWithClass.spanSelector).forEach(item => {
+            item.textContent = ``
+        })
+    }
+    
+    clearForm() {
+        this._deleteErrors();
+        if (this.elementForValidation === document.querySelector('.popup_element')){
+            this._resetForm()
         }
     }
 
@@ -41,7 +60,7 @@ export class FormValidator {
         inputList.forEach(input => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input);
-                this._setButtonState(submitButton, this.elementForValidation.checkValidity());
+                this.setButtonState(submitButton, this.elementForValidation.querySelector(this.objectWithClass.formSelector).checkValidity());
             });
         });
     }
@@ -49,6 +68,6 @@ export class FormValidator {
     enableValidation = () => {
         const submitButton = this.elementForValidation.querySelector(this.objectWithClass.submitButtonSelector);
         this._setEventListeners();
-        this._setButtonState(submitButton, this.elementForValidation.checkValidity());
+        this.setButtonState(submitButton, this.elementForValidation.querySelector(this.objectWithClass.formSelector).checkValidity());
     }
 }
