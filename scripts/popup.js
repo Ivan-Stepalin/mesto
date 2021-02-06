@@ -28,13 +28,9 @@ export class Popup {
             if(evt.target.classList.contains(this._popupCloseIcon)) {
                 this.close();
             }
+            if(evt.target.classList.contains(this._popupOpened)){
+                this.close();
+            }
         })
-    }
-
-    _closePopupByOverlay = (evt) => {
-        const popupHandler = document.querySelector(this._popupOpened)
-        if(evt.target === popupHandler){
-            this.close();    
-        }
     }
 }
