@@ -1,0 +1,9 @@
+export const popupTitle = document.querySelector('.popup_title');
+export const popupElement = document.querySelector('.popup_element');
+export const popupFormTitle = popupTitle.querySelector('.popup__form_title');
+export const popupFormElement = popupElement.querySelector('.popup__form_element');
+export const editButton = document.querySelector('.profile__edit-button');
+export const inputName = popupFormTitle.querySelector('.popup__field_value_name');
+export const inputJob = popupFormTitle.querySelector('.popup__field_value_job');
+export const addButton = document.querySelector('.profile__add-button');
+export const cardContainerElement = document.querySelector('.elements');

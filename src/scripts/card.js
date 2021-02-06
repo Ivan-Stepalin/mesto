@@ -5,7 +5,7 @@ export class Card {
         this._link = data.link;
         this._templateElement = templateElement;
     }
-    
+  
     composeCard() {
         this._newCard = document.querySelector(this._templateElement).content.cloneNode(true);
         const imgElement = this._newCard.querySelector('.element__image');
@@ -20,23 +20,11 @@ export class Card {
         likeButton.addEventListener('click', this._showLike);
         return this._newCard;
     };
-    
-    _removeCard = (event) => {
+    _removeCard=(event)=>{
         event.target.closest('.element').remove();
-        this._newCard = null
-    }
-
-    _showLike = (event) => {
+        this._newCard = null;
+    };
+    _showLike=(event)=>{
         event.target.classList.toggle('element__group_active');
-    }
-    
-    /* _openImgPopup = (evt) => {
-        const popupImgContainer = document.querySelector('.popup_image');
-        const picturePopup = document.querySelector('.popup__image');
-        const picturePopupName = document.querySelector('.popup__image-name');
-        picturePopup.src = evt.target.getAttribute('src');
-        picturePopup.alt = evt.target.closest('.element').querySelector('.element__name').textContent;
-        picturePopupName.textContent = evt.target.closest('.element').querySelector('.element__name').textContent;
-        this._functionForOpen(popupImgContainer);
-    }   */
+    };
 }

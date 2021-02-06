@@ -9,20 +9,17 @@ export class Popup {
         this.popup.classList.add(this._popupOpened);
         this.popup.addEventListener('click', this._closePopupByOverlay);
         document.addEventListener('keydown', this._handleEscClose);
-    }
-
+    };
     close() {
         this.popup.classList.remove(this._popupOpened);
         this.popup.removeEventListener('click', this._closePopupByOverlay);
         document.removeEventListener('keydown', this._handleEscClose);
-    }
-
-    _handleEscClose = (evt) => {
+    };
+    _handleEscClose=(evt)=>{
         if (evt.key === `Escape`){
-            this.close()
+            this.close();
         }
-    }
-
+    };
     setEventListeners() {
         this.popup.addEventListener('click', (evt)=> {
             if(evt.target.classList.contains(this._popupCloseIcon)) {
@@ -32,5 +29,5 @@ export class Popup {
                 this.close();
             }
         })
-    }
+    };
 }
