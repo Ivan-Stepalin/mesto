@@ -1,11 +1,11 @@
-import {initialCards} from './initial-cards.js';
-import {validationConfig} from './validationConfig.js';
-import {Card} from './card.js';
-import {FormValidator} from './formValidator.js';
-import {Section} from './section.js';
-import {PopupWithImage} from './popupWithImage.js';
-import {PopupWithForm} from './popupWithForm.js';
-import {UserInfo} from './userInfo.js';
+import {initialCards} from '../utils/initial-cards';
+import {validationConfig} from '../utils/validationConfig.js';
+import {Card} from '../scripts/card.js';
+import {FormValidator} from '../scripts/formValidator.js';
+import {Section} from '../scripts/section.js';
+import {PopupWithImage} from '../scripts/popupWithImage.js';
+import {PopupWithForm} from '../scripts/popupWithForm.js';
+import {UserInfo} from '../scripts/userInfo.js';
 import {popupTitle, 
         popupElement, 
         popupFormTitle, 
@@ -15,16 +15,20 @@ import {popupTitle,
         inputJob, 
         addButton, 
         cardContainerElement
-} from './utils.js';
+} from '../utils/components.js';
 
-import '../pages/index.css';
+import './index.css';
+
+const createCard = (data) => {
+    const card = new Card (data, 'template', ()=>popupWithImage.open(data.name, data.link));
+    const cardElement = card.composeCard();
+    cardList.addItem(cardElement);
+}
 
 const cardList = new Section({
     items: initialCards,
     renderer: (item) => {
-        const card = new Card (item, 'template', ()=>popupWithImage.open(item.name, item.link));
-        const cardElement = card.composeCard(card);
-        cardList.addItem(cardElement);
+        createCard(item);
     }
 }, cardContainerElement);
 cardList.renderItems();
@@ -65,10 +69,10 @@ const popupAddCardForm = new PopupWithForm('.popup_element', (data) => {
     const cardList = new Section({
         items: [data],
         renderer: () => {
-            const card = new Card (data, 'template', ()=>popupWithImage.open(data.name, data.link));
-            const cardElement = card.composeCard(card);
-            cardList.addItem(cardElement);
+            createCard(data);
         }}, cardContainerElement);
-        cardList.renderItems();
+    cardList.renderItems();
+    popupAddCardForm.close();
 });
 popupAddCardForm.setEventListeners();
+

@@ -22,10 +22,7 @@ export class Popup {
     };
     setEventListeners() {
         this.popup.addEventListener('click', (evt)=> {
-            if(evt.target.classList.contains(this._popupCloseIcon)) {
-                this.close();
-            }
-            if(evt.target.classList.contains(this._popupOpened)){
+            if(evt.target.classList.contains(this._popupCloseIcon) || evt.target.classList.contains(this._popupOpened)) {
                 this.close();
             }
         })
