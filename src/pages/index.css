@@ -35,3 +35,8 @@
 @import url(../blocks/popup/__field/_state/popup__field_state_invalid.css);
 @import url(../blocks/popup/__submit-button/_state/popup__submit-button_state_invalid.css);
 @import url(../blocks/popup/__input-box/popup__input-box.css);
+@import url(../blocks/element/__like-box/element__like-box.css);
+@import url(../blocks/element/__group-count/element__group-count.css);
+@import url(../blocks/element/__bracket/_disabled/element__bracket_disabled.css);
+@import url(../blocks/profile/__avatar-place/profile__avatar-place.css);
+@import url(../blocks/profile/__add-image/profile__avatar-button.css);

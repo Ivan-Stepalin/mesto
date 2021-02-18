@@ -1,20 +1,23 @@
 export class UserInfo {
-    constructor(elementName, elementInfo){
+    constructor(elementName, elementInfo, avatarElement){
         this._elementName =  document.querySelector(elementName);
         this._elementInfo =  document.querySelector(elementInfo);
-        this._formTitleName = document.querySelector('.popup__field_value_name');
-        this._formTitleInfo = document.querySelector('.popup__field_value_job');
+        this._avatarElement = document.querySelector(avatarElement)
     }
 
     getUserInfo() {
         const data = {};
         data.name = this._elementName.textContent;
-        data.info = this._elementInfo.textContent;
+        data.about = this._elementInfo.textContent;
         return data;
     }
 
-    setUserInfo() {
-        this._elementName.textContent = this._formTitleName.value;
-        this._elementInfo.textContent = this._formTitleInfo.value;
+    setUserInfo(data) {
+        this._elementName.textContent = data.name;
+        this._elementInfo.textContent = data.about;
+    }
+
+    setAvatar(link){
+        this._avatarElement.src = link.avatar;
     }
 }

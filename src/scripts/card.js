@@ -1,9 +1,15 @@
 export class Card {
-    constructor(data, templateElement, handleCardClick) {
+    constructor(owner, data, templateElement, handleCardClick, handleDeleteCardClick, handleLikeCard) {
         this._handleCardClick = handleCardClick;
         this._name = data.name;
         this._link = data.link;
         this._templateElement = templateElement;
+        this._like = data.likes.length;
+        this._cardOwnerId = data.owner._id
+        this._handleDeleteCardClick = handleDeleteCardClick;
+        this._handleLikeCard = handleLikeCard;
+        this._owner = owner
+        this._data = data
     }
   
     composeCard() {
@@ -14,17 +20,29 @@ export class Card {
         headerElement.textContent = this._name;
         imgElement.src = this._link;
         imgElement.alt = this._name;
+        this._newCard.querySelector('.element__group-count').textContent = this._like;
         const removeButton = this._newCard.querySelector('.element__bracket');
-        removeButton.addEventListener('click', this._removeCard);
+        removeButton.addEventListener('click', this._handleDeleteCardClick);
+        if (this._cardOwnerId !== this._owner._id) {
+            removeButton.classList.add('element__bracket_disabled')
+        }
         const likeButton = this._newCard.querySelector('.element__group');
-        likeButton.addEventListener('click', this._showLike);
+        likeButton.addEventListener('click', this._handleLikeCard);
+        if (this.isLike(this._data)){
+            likeButton.classList.toggle('element__group_active')
+        }
         return this._newCard;
     };
-    _removeCard=(event)=>{
-        event.target.closest('.element').remove();
-        this._newCard = null;
-    };
-    _showLike=(event)=>{
-        event.target.classList.toggle('element__group_active');
-    };
+    
+    isLike(data) {
+        return data.likes.some(like => {
+          return like._id === this._owner._id;
+        })
+      }
+      
+    isBlack(data) {
+        if (data.classList.contains('element__group_active')){
+            return true
+        } else {return false}  
+    }
 }
