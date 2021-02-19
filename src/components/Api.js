@@ -75,7 +75,7 @@ export class Api {
             handleAddCard(res)
         })
         .catch((err)=>{
-          console.log(`ошибка ${err}`);
+          console.log(`ошибка ${err}1111`);
       })
         .finally(()=>{
           renderLoading(false);

@@ -1,4 +1,4 @@
-import {Popup} from'./popup.js'
+import {Popup} from'./Popup.js'
 
 export class PopupDeleteCard extends Popup {
     constructor(popup, handlerDeleteCard) {
@@ -10,13 +10,14 @@ export class PopupDeleteCard extends Popup {
         super.setEventListeners();
         this.popup.addEventListener('submit', (evt)=>{
             evt.preventDefault();
-            this._handlerDeleteCard(this._element);
+            this._handlerDeleteCard(this._element, this._data);
         })
     }
 
 
-    open = (item) => {
+    open = (item, data) => {
         super.open();
         this._element = item;
+        this._data = data
     }
 }

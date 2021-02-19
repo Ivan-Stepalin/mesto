@@ -13,5 +13,3 @@ export const avatarButton = document.querySelector('.profile__avatar-button');
 export const popupAvatar = document.querySelector('.popup_avatar-update')
 export const popupFormAvatar = popupAvatar.querySelector('.popup__form_avatar-update')
 export const popupAvatarApplyButton = popupAvatar.querySelector('.popup__submit-button');
-
-/* export const popupAvatarLink = popupAvatar.querySelector('.popup__field_value_avatar-link'); */

@@ -7,12 +7,10 @@ export class Popup {
 
     open() {
         this.popup.classList.add(this._popupOpened);
-        this.popup.addEventListener('click', this._closePopupByOverlay);
         document.addEventListener('keydown', this._handleEscClose);
     };
     close() {
         this.popup.classList.remove(this._popupOpened);
-        this.popup.removeEventListener('click', this._closePopupByOverlay);
         document.removeEventListener('keydown', this._handleEscClose);
     };
     _handleEscClose=(evt)=>{

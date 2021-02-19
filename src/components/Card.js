@@ -26,23 +26,22 @@ export class Card {
         if (this._cardOwnerId !== this._owner._id) {
             removeButton.classList.add('element__bracket_disabled')
         }
-        const likeButton = this._newCard.querySelector('.element__group');
-        likeButton.addEventListener('click', this._handleLikeCard);
+        this._likeButton = this._newCard.querySelector('.element__group');
+        this._likeButton.addEventListener('click', this._handleLikeCard);
         if (this.isLike(this._data)){
-            likeButton.classList.toggle('element__group_active')
+            this._likeButton.classList.toggle('element__group_active')
         }
         return this._newCard;
-    };
+    }
     
     isLike(data) {
         return data.likes.some(like => {
           return like._id === this._owner._id;
         })
-      }
+    }
       
-    isBlack(data) {
-        if (data.classList.contains('element__group_active')){
-            return true
-        } else {return false}  
+    likeCard(data) {
+        this._likeButton.parentElement.querySelector('.element__group-count').textContent = (data.likes.length);
+        this._likeButton.classList.toggle('element__group_active');
     }
 }
