@@ -40,7 +40,9 @@ api.getUserInfo((data)=>{
     userInfo.setUserInfo(data);
     userInfo.setAvatar(data)
     parsedData = data;
-});
+}).catch((err)=>{
+    console.log(`ошибка ${err}`);
+})
 
 function renderCard(item) {
     const card = new Card (
@@ -54,12 +56,16 @@ function renderCard(item) {
                 api.disLikeCard(item._id, (data)=>{ 
                     item = data;                          
                     card.likeCard(item);
-                })
+                }).catch((err)=>{
+                    console.log(`ошибка ${err}`);
+                  })
             } else {
                 api.likeCard(item._id, (data)=>{
                     item = data;
                     card.likeCard(item);
-                })
+                }).catch((err)=>{
+                    console.log(`ошибка ${err}`);
+                  })
             }           
         }    
     );
@@ -71,7 +77,9 @@ const deletePopup = new PopupDeleteCard('.popup_confim', (element, data)=>{
     api.deleteCard(data._id, ()=>{
         element.remove();
         element = null;
-    })
+    }).catch((err)=>{
+        console.log(`ошибка ${err}`);
+      })
     deletePopup.close();
 })
 deletePopup.setEventListeners();
@@ -84,6 +92,8 @@ const cardList = new Section({
 
 api.initialCard(data => {
     cardList.renderItems(data);
+}).catch((err)=>{
+    console.log(`ошибка ${err}`);
 })
 
 const popupWithImage = new PopupWithImage(".popup_image", ".popup__image", ".popup__image-name");
@@ -106,7 +116,9 @@ const popupAddCardForm = new PopupWithForm('.popup_element', (inputsData) => {
             popupAddCardButton.textContent = `Сохранить`,
             popupAddCardForm.close()
         )
-    }) ;
+    }).catch((err)=>{
+        console.log(`ошибка ${err}`);
+    });
 })
 popupAddCardForm.setEventListeners();
 
@@ -133,6 +145,8 @@ const popupEditTitleForm = new PopupWithForm('.popup_title', (inputsData) => {
             popupEditTitleButton.textContent = `Сохранить`,
             popupEditTitleForm.close()
         )
+    }).catch((err)=>{
+        console.log(`ошибка ${err}`);
     })
 });
 popupEditTitleForm.setEventListeners();
@@ -146,7 +160,9 @@ const avatarUpdate = new PopupWithForm('.popup_avatar-update', (inputData)=>{
             popupAvatarApplyButton.textContent = `Сохранить`,
             avatarUpdate.close()
         ) 
-    })
+    }).catch((err)=>{
+        console.log(`ошибка ${err}`);
+      })
 })
 avatarUpdate.setEventListeners();
 

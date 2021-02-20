@@ -20,9 +20,6 @@ export class Api {
         .then((res)=>{
             handleUserInfo(res)
         })
-        .catch((err)=>{
-            console.log(`ошибка ${err}`);
-        })
     }
 
     sendUserInfo(inputData, handleUserInfo, renderLoading){
@@ -39,9 +36,6 @@ export class Api {
         .then((res)=>{
             handleUserInfo(res)
         })
-        .catch((err)=>{
-            console.log(`ошибка ${err}`);
-        })
         .finally(()=>{
           renderLoading(false);
         })
@@ -55,9 +49,6 @@ export class Api {
           .then((res)=>{
               handleGetCard(res)
           })
-          .catch((err)=>{
-            console.log(`ошибка ${err}`);
-        })
       }
 
       addCard(inputData, handleAddCard, renderLoading) {
@@ -74,9 +65,6 @@ export class Api {
         .then((res)=>{
             handleAddCard(res)
         })
-        .catch((err)=>{
-          console.log(`ошибка ${err}1111`);
-      })
         .finally(()=>{
           renderLoading(false);
         })
@@ -91,9 +79,6 @@ export class Api {
           .then((res)=>{
               handleDeleteCard(res)
           })
-          .catch((err)=>{
-            console.log(`ошибка ${err}`);
-        })
       }
 
       likeCard(idCard, handleLikeCard) {
@@ -106,9 +91,6 @@ export class Api {
             handleLikeCard(res);
             return res;
         })
-        .catch((err)=>{
-          console.log(`ошибка ${err}`);
-        })
       }
 
       disLikeCard(idCard, handleDisLikeCard) {
@@ -119,9 +101,6 @@ export class Api {
         .then(onError)
         .then((res)=>{
             handleDisLikeCard(res);
-        })
-        .catch((err)=>{
-          console.log(`ошибка ${err}`);
         })
       }
 
@@ -137,9 +116,6 @@ export class Api {
         .then(onError)
         .then((res)=>{
             handleAddAvatar(res)
-        })
-        .catch((err)=>{
-          console.log(`ошибка ${err}`);
         })
         .finally(()=>{
           renderLoading(false)
